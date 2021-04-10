@@ -1,0 +1,237 @@
+{% extends 'jobApp/base.html' %}
+{% load static %}
+{% block main %}
+
+<!-- ======================= Page Title ===================== -->
+<div class="page-title light" style="background:url(/static/jobApp/assets/img/slider-2.jpg);">
+	<div class="container">
+		<div class="page-caption">
+			<h2>Job Details</h2>
+			<p><a href="{% url 'home' %}" title="Home">Home</a> <i class="ti-arrow-right"></i> Job Details</p>
+		</div>
+	</div>
+</div>
+<!-- ======================= End Page Title ===================== -->
+
+
+<!-- ====================== Start Job Detail 2 ================ -->
+<section class="gray">
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+
+			<div class="col-md-8 col-sm-12">
+
+				<div class="detail-wrapper">
+					<div class="detail-wrapper-body">
+
+						<div class="text-center mrg-bot-30">
+							<img src="/media/{{ job_detail.company_logo }}" class="width-100" alt="" />
+							<h4 class="meg-0">Web Designer</h4>
+							<span>2726 Shinn Street, New York</span>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-4 mrg-bot-10">
+								<i class="ti-credit-card padd-r-10"></i>salary- {{ job_detail.salary }}
+							</div>
+							<div class="col-sm-4 mrg-bot-10">
+								<i class="ti-mobile padd-r-10"></i>phone no- {{ job_detail.phone_no }}
+							</div>
+							<div class="col-sm-4 mrg-bot-10">
+								<i class="ti-email padd-r-10"></i>email- {{ job_detail.email }}
+							</div>
+							<div class="col-sm-4 mrg-bot-10">
+								<i class="ti-calendar padd-r-10"></i>
+								<span class="padd-5 mrg-l-5 full-type">{{job_detail.job_type }}</span>
+
+							</div>
+							<div class="col-sm-4 mrg-bot-10">
+								<i class="ti-user padd-r-10"></i>
+								<span class="mrg-l-5 cl-danger">no of vacancy- {{ job_detail.no_of_vacancy }}</span>
+
+							</div>
+							<div class="col-sm-4 mrg-bot-10">
+								<i class="ti-shield padd-r-10"></i>experience- {{ job_detail.experience }}
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="detail-wrapper">
+					<div class="detail-wrapper-header">
+						<h4>Description</h4>
+					</div>
+					<div class="detail-wrapper-body">
+						{{ job_detail.description }}
+					</div>
+				</div>
+
+				<div class="detail-wrapper">
+					<div class="detail-wrapper-header">
+						<h4>Responsibilities</h4>
+					</div>
+					<div class="detail-wrapper-body">
+						<ul class="detail-list">
+							{{ job_detail.skills }}
+						</ul>
+					</div>
+				</div>
+
+				<div class="detail-wrapper">
+					<div class="detail-wrapper-header">
+						<h4>Requirements</h4>
+					</div>
+					<div class="detail-wrapper-body">
+						<ul class="detail-list">
+							<li><strong>skills:</strong> {{ job_detail.skills }}</li>
+							<li><strong>Qualification:</strong> {{ job_detail.qualification }}</li>
+							<li><strong>Position:</strong> {{ job_detail.position }}</li>
+							<li><strong>Experience:</strong> {{ job_detail.experience }}</li>
+						</ul>
+					</div>
+				</div>
+				{% if user.is_authenticated %}
+				{% if job_detail.user.id == user.id or user.is_superuser %}
+				<a href="{% url 'update' pk=job_detail.pk %}"><input type="submit" class="btn btn-primary"
+						value="Edit Post"></a>
+				<a href="{% url 'delete' pk=job_detail.pk %}"><input type="submit" class="btn btn-danger"
+						value="Delete Post"></a>
+				{% endif %}
+				{% endif %}
+				<div>
+					{% if user.is_employee %}
+					<a href="{% url 'apply_for_job' pk=job_detail.pk %}"><input type="submit" class="btn btn-primary"
+							value="Apply"></a>
+					{% endif %}
+
+					{% if not user.is_authenticated %}
+					<a href="{%  url 'signup' %}"><input type="submit" class="btn btn-success" value="signup"></a>
+					{% endif %}
+				</div>
+			</div>
+
+			<!-- Sidebar -->
+			<div class="col-md-4 col-sm-12">
+				<div class="sidebar">
+
+					<!-- Start: Opening hour -->
+					<div class="widget-boxed lg">
+						<div class="widget-boxed-body">
+							{% if user.is_employee %}
+							<a href="{% url 'apply_for_job' pk=job_detail.pk %}"
+								class="btn btn-m theme-btn full-width mrg-bot-10"><i class="fa fa-paper-plane"></i>Apply
+								For Job</a>
+							<a href="#" class="btn btn-m light-gray-btn full-width"><i class="fa fa-linkedin"></i>Apply
+								with Linkedin</a>
+							{% endif %}
+							{% if not user.is_authenticated %}
+							<a href="{%  url 'signup' %}"><input type="submit" class="btn btn-success"
+									value="signup"></a>
+							{% endif %}
+						</div>
+					</div>
+					<!-- End: Opening hour -->
+
+					<!-- Start: Job Overview -->
+					<div class="widget-boxed">
+						<div class="widget-boxed-header">
+							<h4><i class="ti-location-pin padd-r-10"></i>Location</h4>
+						</div>
+						<div class="widget-boxed-body">
+							<div class="side-list no-border">
+								<ul>
+									<li><strong>skills:</strong> {{ job_detail.skills }}</li>
+									<li><strong>Qualification:</strong> {{ job_detail.qualification }}</li>
+									<li><strong>Position:</strong> {{ job_detail.position }}</li>
+									<li><strong>Experience:</strong> {{ job_detail.experience }}</li>
+								</ul>
+								<h5>Share Job</h5>
+								<ul class="side-list-inline no-border social-side">
+									<li><a href="#"><i class="fa fa-facebook theme-cl"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus theme-cl"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter theme-cl"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin theme-cl"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest theme-cl"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- End: Job Overview -->
+
+					<!-- Start: Opening hour -->
+					<div class="widget-boxed">
+						<div class="widget-boxed-header">
+							<h4><i class="ti-time padd-r-10"></i>Opening Hours</h4>
+						</div>
+						<div class="widget-boxed-body">
+							<div class="side-list">
+								<ul>
+									<li>Monday <span>9 AM - 5 PM</span></li>
+									<li>Tuesday <span>9 AM - 5 PM</span></li>
+									<li>Wednesday <span>9 AM - 5 PM</span></li>
+									<li>Thursday <span>9 AM - 5 PM</span></li>
+									<li>Friday <span>9 AM - 5 PM</span></li>
+									<li>Saturday <span>9 AM - 3 PM</span></li>
+									<li>Sunday <span>Closed</span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- End: Opening hour -->
+
+				</div>
+
+			</div>
+			<!-- End Sidebar -->
+
+		</div>
+		<!-- End Row -->
+
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-12">
+				<h4 class="mrg-bot-20">More Jobs</h4>
+			</div>
+		</div>
+		<!-- End Row -->
+
+		<div class="row">
+
+			<!-- Single Job -->
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<div class="grid-job-widget">
+
+					<span class="job-type full-type">{{ job_detail.job_type }}</span>
+					<div class="job-like">
+						<label class="toggler toggler-danger">
+							<input type="checkbox" checked>
+							<i class="fa fa-heart"></i>
+						</label>
+					</div>
+
+					<div class="u-content">
+						<div class="avatar box-80">
+							<a href="employer-detail.html">
+								<img class="img-responsive" src="/media/{{ job_detail.company_logo }}" alt="">
+							</a>
+						</div>
+						<h5><a href="employer-detail.html">{{ job_detail.job_title }}</a></h5>
+						<p class="text-muted">{{ job_detail.address }}</p>
+					</div>
+
+					<div class="job-type-grid">
+						<a href="{{ job_detail.user.id }}" class="btn job-browse-btn btn-radius br-light">Browse Now</a>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<!-- End Row -->
+
+	</div>
+</section>
+{% endblock %}
+<!-- ====================== End Job Detail 2 ================ -->

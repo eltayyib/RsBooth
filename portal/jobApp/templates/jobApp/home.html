@@ -1,0 +1,501 @@
+{% extends 'jobApp/base.html' %}
+{% load static %}
+{% block main %}
+
+<!-- ======================= Start Banner ===================== -->
+<div class="main-banner" style="background-image:url(/static/jobApp/assets/img/banner-1.jpg);" data-overlay="6">
+	<div class="container">
+		<div class="col-md-12 col-sm-12">
+
+			<div class="caption cl-white">
+				<h2>Find Your Dream Jobs!</h2>
+			</div>
+
+			<form>
+				<div class="row">
+					<div class="col-lg-8 col-md-10">
+						<fieldset class="home-form-1">
+
+							<div class="col-md-5 col-sm-5 padd-0">
+								<div class="form-group">
+									<div class="icon-addon addon-lg">
+										<input type="text" id="job_title" name="job_title" class="form-control br-1"
+											placeholder="job title" />
+										<label class="theme-cl fa fa-pencil"></label>
+									</div>
+								</div>
+
+							</div>
+
+
+							<div class="col-md-4 col-sm-4 padd-0">
+								<div class="form-group">
+									<div class="icon-addon addon-lg">
+										<input type="text" id="address" name="address"
+											class="form-control form-control-lg" placeholder="Dhaka,Bangladesh">
+										<label class="theme-cl fa fa-map-marker"></label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-sm-3 padd-0 m-clear">
+								<button type="submit" class="btn theme-btn cl-white seub-btn">FIND JOB</button>
+							</div>
+
+						</fieldset>
+
+						<ul class="featured-short-employer none-trans employer-thumb">
+							<!-- Single Employer -->
+							<li>
+								<div class="small-featured-employers-text light">
+									Featured<br>Employers
+								</div>
+							</li>
+							<!-- Single Employer -->
+							<li>
+								<div class="small-featured-employers">
+									<a href="employer-detail.html"><img
+											src="{% static 'jobApp/assets/img/google-white.svg' %}" alt="" /></a>
+								</div>
+							</li>
+							<!-- Single Employer -->
+							<li>
+								<div class="small-featured-employers">
+									<a href="employer-detail.html"><img
+											src="{% static 'jobApp/assets/img/spotify-white.svg' %}" alt="" /></a>
+								</div>
+							</li>
+							<!-- Single Employer -->
+							<li>
+								<div class="small-featured-employers">
+									<a href="employer-detail.html"><img
+											src="{% static 'jobApp/assets/img/airbnb-white.svg' %}" alt="" /></a>
+								</div>
+							</li>
+							<!-- Single Employer -->
+							<li>
+								<div class="small-featured-employers">
+									<a href="employer-detail.html"><img
+											src="{% static 'jobApp/assets/img/paypal-white.svg' %}" alt="" /></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+<!-- ======================= End Banner ===================== -->
+
+<!-- ================= Job start ========================= -->
+<section>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<h2>Candidates <span class="theme-cl">{{ candidates }}</span></h2>
+			</div>
+
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<h2>Job Posted <span class="theme-cl">{{ jobs_qs }}</span></h2>
+			</div>
+
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<h2>Companies <span class="theme-cl">{{ company_name }}</span></h2>
+			</div>
+			<div class="col-md-12">
+				<div class="heading">
+					<h2>Browse <span class="theme-cl">Hot Jobs</span></h2>
+					<p>Browse {{ jobs_qs }} top jobs in your local city.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			{% for list in jobs %}
+			<!-- Single Job -->
+			<div class="col-lg-3 col-md-4 col-sm-6">
+				<div class="grid-job-widget">
+
+					<span class="job-type full-type">{{ list.job_type }}</span>
+					<div class="job-like">
+						<label class="toggler toggler-danger">
+							<input type="checkbox" checked>
+							<i class="fa fa-heart"></i>
+						</label>
+					</div>
+
+					<div class="u-content">
+						<div class="avatar box-80">
+							<a href="employer-detail.html">
+								<img class="img-responsive" src="/media/{{ list.company_logo }}" alt="">
+							</a>
+						</div>
+						<h5><a href="employer-detail.html">{{ list.job_title }}</a></h5>
+						<p class="text-muted">{{ list.address }}</p>
+					</div>
+
+					<div class="job-type-grid">
+						<a href="{% url 'detail' list.id %}" class="btn job-browse-btn btn-radius br-light">Browse
+							Now</a>
+					</div>
+
+				</div>
+			</div>
+			{% endfor %}
+
+
+		</div>
+
+	</div>
+</section>
+
+<!-- ================= Category start ========================= -->
+<section class="image-bg" style="background:url(/static/jobApp/assets/img/banner-2.jpg) no-repeat;" data-overlay="7">
+	<div class="container">
+
+		<div class="row" data-aos="fade-up">
+			<div class="col-md-12">
+				<div class="heading light">
+					<h2>Browse By Category</h2>
+					<p>Each month, more than 7 million Jobhunt turn to website in their search for work, making
+						over<br>160,000 applications every day.</p>
+				</div>
+			</div>
+		</div>
+		{% for post in jobs %}
+		<div class="row">
+
+			<div class="col-md-3 col-sm-6">
+				<div class="category-box" data-aos="fade-up">
+					<div class="category-desc">
+						<div class="category-icon">
+							<i class="icon-bargraph" aria-hidden="true"></i>
+							<i class="icon-bargraph abs-icon" aria-hidden="true"></i>
+						</div>
+
+						<div class="category-detail category-desc-text">
+							<a href="{% url 'detail' post.id %}" title="">
+								<h4>{{ post.category }}</h4>
+							</a>
+							<p>122 Jobs</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+
+	</div>
+</section>
+
+<!-- ================= Featured Job Section ========================= -->
+<section>
+	<div class="container">
+
+		<div class="row" data-aos="fade-up">
+			<div class="col-md-12">
+				<div class="heading">
+					<h2>Find Your <span class="theme-cl">Second Home</span></h2>
+					<p>200+ Startups Idea & Companies</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<!-- Video -->
+			<div class="col-lg-6 col-md-6 col-sm-12">
+				<div class="imagebg ht-60 border--radius border--round box-shadow" data-overlay="3">
+					<div class="bg-img-holder" style="background: url(/static/jobApp/assets/img/7994.jpg); opacity: 1;">
+						<img alt="background" src="{% static 'jobApp/assets/img/7994.jpg' %}">
+					</div>
+					<div class="pos-vertical-center">
+						<div class="row text-center justify-content-center">
+							<div class="video-block">
+								<div class="video-play-icon modal-trigger">
+									<a href="#" data-toggle="modal" data-target="#popup-video"><i
+											class="theme-cl fa fa-play" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Featured Jobs -->
+			<div class="col-lg-6 col-md-6 col-sm-12">
+				<!-- Single Featured Jobs -->
+				<div class="wj-featured-list">
+					<div class="wj-featured-list-thumb">
+						<a href="employer-detail.html"><img src="{% static 'jobApp/assets/img/c-2.png' %}"
+								class="img-responsive" alt="" /></a>
+					</div>
+					<div class="wj-featured-list-detail">
+						<a href="employer-detail.html">
+							<h4 class="wj-featured-list-title">Google Ltd</h4>
+						</a>
+						<p>Google is big platform and IT company and provide multi features. Google used by more
+							countries.</p>
+						<ul>
+							<li><i class="ti-location-pin"></i>#204 Zivaka, London</li>
+							<li><i class="ti-time"></i>Full Time</li>
+							<li><i class="ti-briefcase"></i>10 Jobs</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Single Featured Jobs -->
+				<div class="wj-featured-list">
+					<div class="wj-featured-list-thumb">
+						<a href="employer-detail.html"><img src="{% static 'jobApp/assets/img/c-6.png' %}"
+								class="img-responsive" alt="" /></a>
+					</div>
+					<div class="wj-featured-list-detail">
+						<a href="employer-detail.html">
+							<h4 class="wj-featured-list-title">Sycago Ltd</h4>
+						</a>
+						<p>Google is big platform and IT company and provide multi features. Google used by more
+							countries.</p>
+						<ul>
+							<li><i class="ti-location-pin"></i>#204 Zivaka, London</li>
+							<li><i class="ti-time"></i>Full Time</li>
+							<li><i class="ti-briefcase"></i>07 Jobs</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Single Featured Jobs -->
+				<div class="wj-featured-list">
+					<div class="wj-featured-list-thumb">
+						<a href="employer-detail.html"><img src="{% static 'jobApp/assets/img/c-4.png' %}"
+								class="img-responsive" alt="" /></a>
+					</div>
+					<div class="wj-featured-list-detail">
+						<a href="employer-detail.html">
+							<h4 class="wj-featured-list-title">Alivara Inc</h4>
+						</a>
+						<p>Google is big platform and IT company and provide multi features. Google used by more
+							countries.</p>
+						<ul>
+							<li><i class="ti-location-pin"></i>#204 Zivaka, London</li>
+							<li><i class="ti-time"></i>Full Time</li>
+							<li><i class="ti-briefcase"></i>05 Jobs</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</section>
+<!-- ================= Featured Job Section ========================= -->
+
+<!-- ========================= Testimonial Section ========================= -->
+<section class="theme-bg">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="heading light">
+					<h2>What Our Client Says</h2>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4 col-sm-4">
+				<div class="testimonial-wrap style-2">
+					<div class="client-thumb-box">
+						<div class="client-thumb-content">
+							<div class="client-thumb">
+								<img src="{% static 'jobApp/assets/img/client-1.jpg' %}"
+									class="img-responsive img-circle" alt="">
+							</div>
+							<h5 class="mb-0">Adam Gillworm</h5>
+							<span>Envato Market</span>
+							<div class="rating">
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+						</div>
+					</div>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+						deleniti qui blanditiis praesentium voluptatum deleniti.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-4">
+				<div class="testimonial-wrap style-2">
+					<div class="client-thumb-box">
+						<div class="client-thumb-content">
+							<div class="client-thumb">
+								<img src="{% static 'jobApp/assets/img/client-2.jpg' %}"
+									class="img-responsive img-circle" alt="">
+							</div>
+							<h5 class="mb-0">Lily Adviliam</h5>
+							<span>Drizvato Designer</span>
+							<div class="rating">
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+						</div>
+					</div>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+						deleniti qui blanditiis praesentium voluptatum deleniti.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-4">
+				<div class="testimonial-wrap style-2">
+					<div class="client-thumb-box">
+						<div class="client-thumb-content">
+							<div class="client-thumb">
+								<img src="{% static 'jobApp/assets/img/client-3.jpg' %}"
+									class="img-responsive img-circle" alt="">
+							</div>
+							<h5 class="mb-0">Swan Advarm</h5>
+							<span>Drizvato Manager</span>
+							<div class="rating">
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+						</div>
+					</div>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+						deleniti qui blanditiis praesentium voluptatum deleniti.</p>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</section>
+<!-- ========================= End Testimonial Section ============================ -->
+
+<!-- ================= Blog start ========================= -->
+<section>
+	<div class="container">
+
+		<div class="row" data-aos="fade-up">
+			<div class="col-md-12">
+				<div class="heading">
+					<h2>Our Business <span class="theme-cl">Highlights</span></h2>
+					<p>Each month, more than 7 million Jobhunt turn to website in their search for work, making
+						over<br>160,000 applications every day.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<!-- Single Blog -->
+			<div class="col-md-4 col-sm-6">
+				<div class="blog-box blog-grid-box">
+					<div class="blog-grid-box-img">
+						<img src="{% static 'jobApp/assets/img/blog/blog-1.jpg' %}" class="img-responsive" alt="" />
+					</div>
+
+					<div class="blog-grid-box-content">
+						<div class="blog-avatar text-center">
+							<img src="{% static 'jobApp/assets/img/user-1.png' %}" class="img-responsive" alt="" />
+							<p><strong>By</strong> <span class="theme-cl">Adam Khiwak</span></p>
+						</div>
+						<h4>Why People Use Listing Hub</h4>
+						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+							voluptatum</p>
+						<a href="blog-detail.html" class="theme-cl" title="Read More..">Continue...</a>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Single Blog -->
+			<div class="col-md-4 col-sm-6">
+				<div class="blog-box blog-grid-box">
+
+					<div class="blog-grid-box-img">
+						<img src="{% static 'jobApp/assets/img/blog/blog-2.jpg' %}" class="img-responsive" alt="" />
+					</div>
+
+					<div class="blog-grid-box-content">
+						<div class="blog-avatar text-center">
+							<img src="{% static 'jobApp/assets/img/user-2.jpg' %}" class="img-responsive" alt="" />
+							<p><strong>By</strong> <span class="theme-cl">Adam Khiwak</span></p>
+						</div>
+						<h4>Why People Use Listing Hub</h4>
+						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+							voluptatum</p>
+						<a href="blog-detail.html" class="theme-cl" title="Read More..">Continue...</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Single Blog -->
+			<div class="col-md-4 col-sm-6">
+				<div class="blog-box blog-grid-box">
+					<div class="blog-grid-box-img">
+						<img src="{% static 'jobApp/assets/img/blog/blog-3.jpg' %}" class="img-responsive" alt="" />
+					</div>
+					<div class="blog-grid-box-content">
+						<div class="blog-avatar text-center">
+							<img src="{% static 'jobApp/assets/img/user-3.jpg' %}" class="img-responsive" alt="" />
+							<p><strong>By</strong> <span class="theme-cl">Adam Khiwak</span></p>
+						</div>
+						<h4>Why People Use Listing Hub</h4>
+						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+							voluptatum</p>
+						<a href="blog-detail.html" class="theme-cl" title="Read More..">Continue...</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</section>
+
+<!-- =================== Newsletter ==================== -->
+<section class="newsletter theme-bg" style="background-image:url(/static/jobApp/assets/img/bg-new.png)">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="heading light">
+					<h2>Get Latest News</h2>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mrg-top-20">
+			<div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+				<div class="newsletter-box text-center">
+					<div class="input-group">
+						<span class="input-group-addon"><span class="ti-email theme-cl"></span></span>
+						<input type="text" class="form-control" placeholder="Enter your Email..">
+					</div>
+					<button type="button" class="btn theme-btn btn-radius btn-m">subscribe</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- =================== End Newsletter ==================== -->
+
+{% endblock %}

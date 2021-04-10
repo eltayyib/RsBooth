@@ -1,0 +1,40 @@
+{% extends 'jobApp/base.html' %}
+{% load static %}
+{% block main %}
+{% load crispy_forms_tags %}
+
+<!-- ======================= Start Page Title ===================== -->
+<div class="page-title light" style="background:url(/static/jobApp/assets/img/slider-2.jpg);">
+	<div class="container">
+		<div class="page-caption">
+			<h2>Create Job</h2>
+			<p><a href="{% url 'home' %}" title="Home">Home</a> <i class="ti-arrow-right"></i> Create Job</p>
+		</div>
+	</div>
+</div>
+<!-- ======================= End Page Title ===================== -->
+
+<!-- ======================= Create Job ===================== -->
+<section class="create-job gray">
+	<div class="container">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{c_form | crispy}}
+
+			<div class="text-center">
+				<button type="submit" class="btn btn-m theme-btn">Submit & Exit</button>
+			</div>
+		</form>
+	</div>
+
+	<script>
+		var user = '{{ user.id }}';
+		document.getElementById('user').value = user;
+	</script>
+
+</section>
+
+<!-- ====================== End Create Job ================ -->
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'jobApp/base.html' %}
+{% load static %}
+{% block main %}
+{% load crispy_forms_tags %}
+		
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+
+	
+<!-- Mirrored from themezhub.net/jobvivo-live/jobvivo/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Feb 2021 01:45:15 GMT -->
+
+	
+	
+		
+		<!-- ======================= Start Page Title ===================== -->
+		<div class="page-title light" style="background:url(/static/jobApp/assets/img/slider-2.jpg);">
+			<div class="container">
+				<div class="page-caption">
+					<h2>Create An Account</h2>
+					<p><a href="{% url 'home' %}" title="Home">Home</a> <i class="ti-arrow-right"></i> Login</p>
+				</div>
+			</div>
+		</div>
+		<!-- ======================= End Page Title ===================== -->
+		
+		<!-- ====================== Start Signup Form ============= -->
+		<section class="gray">
+			<div class="container">
+				<div class="container">
+			
+					<div class="log-box">
+            <form method="POST">
+              {% csrf_token %}
+              {{form | crispy }}
+              <button type="submit" style="width: 100%;" class="btn btn-success">Login</button>
+           </form>
+						
+						<div class="log-option"><span></span></div>
+						
+						
+						
+					</div>
+				</div>
+				
+			</div>
+		</section>
+		<!-- ====================== End Signup Form ============= -->
+		
+		
+		 
+{% endblock %}	

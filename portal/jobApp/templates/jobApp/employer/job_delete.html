@@ -1,0 +1,42 @@
+{% extends 'jobApp/base.html' %}
+{% load static %}
+{% block main %}
+		
+			
+		<!-- ======================= Page Title ===================== -->
+		<div class="page-title light" style="background:url(/static/jobApp/assets/img/slider-2.jpg);">
+			<div class="container">
+				<div class="page-caption">
+					<h2>Job View Cart</h2>
+					<p><a href="#" title="Home">Home</a> <i class="ti-arrow-right"></i> Job View Cart</p>
+				</div>
+			</div>
+		</div>
+		<!-- ======================= End Page Title ===================== -->
+		
+		<!-- ================ Office Address ======================= -->
+		<section class="gray">
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					
+					<div class="col-md-12 col-sm-12">
+					
+						
+					<h1>Delete {{ list.job_title }}</h1>
+				
+					<form method="POST"  enctype="multipart/form-data">
+					{% csrf_token %}
+					<button class="btn btn-danger">Delete</button>
+					</form>
+					<a href="{% url 'home1' %}" class="btn btn-primary">Cancel</a>
+						
+					</div>
+					
+				</div>
+				<!--row -->
+			</div>
+		</section>
+		<!-- ================ End Office Address ======================= -->
+			
+{% endblock %}	

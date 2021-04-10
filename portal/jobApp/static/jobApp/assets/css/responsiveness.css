@@ -1,0 +1,433 @@
+/*-----------------------------------------
+* Theme Name: Listing Hub
+* Author: Themez Hub
+* Version: 1.0
+* Last Change: Dec 27 2017
+  Author URI    : http://www.themezhub.com/
+ --------------------------------*/
+@media only screen  and (min-width : 768px) {
+.emp-detail {
+    margin-top: 60px;
+}
+.main-banner .caption {
+    margin-top: 4em;
+}
+.heading h2 {
+    font-size: 45px;
+    margin-bottom:5px;
+}
+.newsletter-box .btn {
+    padding: 18px 35px;
+    position: absolute;
+    top: 5px;
+    right: 22px;
+}
+.freelancer.banner img {
+    position: relative;
+    top: 5rem;
+}
+.newsletter-box {
+    padding: 0;
+    box-shadow: 0px 0px 0px 9px rgba(255,255,255,0.8);
+    border-radius: 50px;
+}
+.main-banner {
+    min-height:620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+}
+	
+@media only screen  and (min-width : 993px) {
+	section {
+		padding:6em 0;
+	}
+	.work-process p {
+		font-size: 15px;
+		padding: 0 20px;
+	}
+
+	.navbar-default .navbar-brand img {
+		max-width: 170px;
+	}
+	.half-box {
+		padding:140px 40px;
+	}
+	.half-box h2{
+		font-size:50px;
+	}
+	.newsletter{
+		padding:100px 0;
+	}
+	
+	.freelancer.banner h2{
+	font-size:65px;
+	}
+	.freelancer.banner .input-group .form-control{
+		height:65px;
+	}
+	.freelancer.banner .input-group-btn:last-child>.btn, .freelancer.banner .input-group-btn:last-child>.btn-group {
+		height:65px;
+	}
+	nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-display, nav.navbar.bootsnav.navbar-fixed.no-background .logo-display {
+		display: block;
+	}
+	nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-scrolled, nav.navbar.bootsnav.navbar-fixed.no-background .logo-scrolled {
+		display: none;
+	}
+	nav.navbar.bootsnav.navbar-fixed .logo-display {
+		display: none;
+	}
+
+}
+
+@media only screen  and (min-width : 1024px) {
+	nav.navbar.bootsnav li.dropdown ul.dropdown-menu {
+		width:250px;
+	}
+	h1 {
+	  font-size:46px;
+	}
+	h2 {
+	  font-size:36px;
+	}
+	h3 {
+	  font-size:27px;
+	}
+	h4 {
+	  font-size:20px;
+	} 
+	
+	h5 {
+	  font-size:17;
+	}
+	
+	h6 {
+	  font-size:12;
+	}
+	
+	/*------------ Custom Font Style --------------*/
+	.font-50{
+	font-size:50px;
+	}
+
+	.font-60{
+		font-size:60px;
+	}
+
+	.font-80{
+		font-size:80px;
+	}
+
+	.font-100{
+		font-size:100px;
+	}
+
+	.font-150{
+		font-size:150px;
+	}
+
+	.font-200{
+		font-size:200px;
+	}
+
+	.font-250{
+		font-size:250px;
+	}
+
+	.font-300{
+		font-size:300px;
+	}
+
+	.font-400{
+		font-size:400px;
+	}
+
+	.font-450{
+		font-size:450px;
+	}
+
+	.font-500{
+		font-size:500px;
+	}
+
+	.font-bold{
+		font-weight:bold;
+	}
+	.main-banner h2 {
+		font-size: 50px;
+		font-weight: 600;
+		margin-bottom:10px;
+	}
+	.main-banner .small h2 {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+	.main-banner p{
+		font-size:17px;
+	}
+	nav.navbar.bootsnav ul.navbar-right li.dropdown.sign-up ul.dropdown-menu li a {
+		text-align: left;
+	}
+
+}
+
+@media only screen  and (min-width : 1200px) {
+	.main-banner, .freelancer.banner .container {
+		height:100vh;
+		min-height:620px;
+	}
+	
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 993px){
+	nav.navbar.bootsnav ul.nav>li>a.btn-signup.red-btn {
+    padding: 11px 16px;
+    margin-top: 4px;
+   }
+   .navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 5px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+}
+
+@media screen and (max-width: 1199px) {
+	.verticle-blog-caption .blog-shot-caption h4 {
+		font-size: 13px;
+	}
+}
+
+@media only screen and (max-width: 992px) and (min-width: 768px){
+
+}
+@media screen and (max-width: 1024px) {
+	.work-process:before{
+		display:none;
+	}
+	.slick-prev {
+		left: 0;
+		z-index:1;
+	}
+	.slick-next{
+		right:5px;
+		z-index:1;
+	}
+}
+@media screen and (max-width: 1023px) {
+.fs-left-map-box {
+		float: none;
+	}
+	.half-map .fs-inner-container {
+		width: 100%;
+		min-height: 100vh;
+		float: none;
+	}
+	.fs-left-map-box .map-container.fw-map {
+		width: 100%;
+		position: relative;
+	}
+	.home-map.fl-wrap {
+		height: 400px;
+	}
+	.map-container.fw-map #map-main {
+		position: relative;
+		height: 400px;
+	}
+}
+@media screen and (max-width: 992px) {
+	.navbar-default .navbar-brand img {
+		max-width: 160px;
+	}
+	.wj-featured-list-thumb img {
+		max-width: 60px;
+	}
+	.wj-featured-list-thumb {
+		width: 70px;
+		height: 70px;
+	}
+	.main-banner .form-control{
+		margin-bottom:10px;
+	}
+	
+	.fb-log-btn {
+		margin-bottom: 10px;
+	}
+	
+	.main-banner {
+		padding-top: 120px;
+	}
+	.candidate-list-layout {
+    display: block;
+    text-align: center;
+}
+	.cll-thumb {
+		max-width: 80px;
+		display: table;
+		margin: 0 auto;
+		overflow: hidden;
+		height: 80px;
+		float: none;
+	}
+	.cll-caption ul li {
+		border: navajowhite;
+	}
+	.cll-caption ul {
+		margin-bottom: 2rem;
+	}
+	.filter-wraps-one ul li {
+		margin-bottom: 5px;
+	}
+	.filter-wraps-one i.ti-search {
+		display: none;
+	}
+	.filter-wraps-one ul {
+		padding-left: 0;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.verticleblogilist .signle-vert-blog-item {
+		display: block;
+		height: auto;
+		overflow: hidden;
+	}
+	.verticle-blog-caption .blog-shot-caption {
+		position: relative;
+		transform: translateY(0%);
+		left: 12px;
+		padding: 2rem;
+	}
+	.blog-shot-img {
+		min-height: auto;
+		max-height: initial;
+	}
+	.small-featured-employers {
+		margin-bottom: 10px;
+	}
+	.testimonial-wrap {
+		margin: 1rem 0;
+	}
+	img.image-cover {
+		display: none;
+	}
+	fieldset.home-form-1 .form-control {
+		border: none !important;
+	}
+	fieldset.home-form-1 .form-group {
+		border: 1px solid #dce3ea;
+		border-radius: 0.5rem;
+		margin-bottom: 10px;
+		background: #ffffff;
+	}
+	fieldset.home-form-1 .form-control {
+		border: none !important;
+		margin: 0;
+	}
+	fieldset.home-form-1 .icon-addon.addon-lg {
+		max-width: 98%;
+		margin: 0 auto;
+	}
+	/*-- General Style--*/
+	html body .mob-padd-0{
+		padding:0;
+	}
+	html body .mob-mrg-0{
+		margin:0;
+	}
+	html body .mob-extra-mrg{
+		margin-left:-15px;
+		margin-right:-15px;
+	}
+	.heading h2 {
+		font-size: 28px;
+	}
+	/*----- Mobile Padding Settings ------*/
+	.mob-padd-0{
+		padding-left:0;
+		padding-right:0;
+	}
+	.newsletter-box .btn{
+		width:100%;
+	}
+        .m-clear{
+clear:both;
+}
+	.mob-mrg-0{
+		margin-left:-15px;
+		margin-right:-15px;
+	}
+	.mob-extra-mrg{
+		margin-left:-15px;
+		margin-right:-15px;
+	}
+	
+	.banner {
+		padding: 100px 0 80px 0;
+	}
+	
+	.emp-pic, .emp-bt, .emp-des {
+		text-align: center;
+	}
+	
+	.emp-pic img{
+		display:table;
+		margin:0 auto;
+	}
+	.emp-detail {
+		margin-top: 50px;
+	}
+
+}
+
+@media screen and (max-width: 479px) {
+	.cmp-job-review {
+		float: left;
+	}
+	.vertical-job-header h4, .com-tagline {
+		margin-left: 55px;
+	}
+	.vertical-job-header h4 {
+		font-size: 16px;
+	}
+	.job-verticle-list {
+		padding: 0 18px;
+	}
+	span.pull-right.vacancy-no {
+		right: 16px;
+	}
+	span.pull-right.job-type {
+		position: relative;
+		right: 0;
+		top: 0;
+		padding: 1px 22px;
+		border-radius: 50px;
+		border: 1px solid #eaeff5;
+		font-size: 11px;
+		float: left !important;
+
+	}
+	.newjob-list-layout .cll-caption {
+		display: inline-block;
+		padding-left: 0;
+		margin-top: 1rem;
+	}
+	.candidate-list-layout, .newjob-list-layout {
+		display: block;
+	}
+	.newjob-list-layout h4 a {
+		display: block;
+		line-height: 2;
+		margin: 0;
+	}
+	.cll-caption h4 span.jb-status {
+		top: 0;
+		margin: 0;
+	}
+}

@@ -1,0 +1,72 @@
+{% extends 'jobApp/base_1.html' %}
+{% load static %}
+{% block main %}
+
+
+
+<!-- Mirrored from qerza.dexignzone.com/xhtml/table-datatable-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Feb 2021 11:47:14 GMT -->
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="page-titles">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Table</a></li>
+						<li class="breadcrumb-item active"><a href="{% url 'data_list' %}">Draft</a></li>
+					</ol>
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Draft</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-dark table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Company Name</th>
+                                                <th>Qualification</th>
+                                                <th>Salary</th>
+                                                <th>Experience</th>
+                                                <th>no_of_vacancy</th>
+                                                <th>job_title</th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                {% for draft in drafts %}
+                                            <tr>
+                                                <td>{{ draft.company_name }}</td>
+                                                <td>{{ draft.qualification}}</td>
+                                                <td>{{ draft.salary }}</td>
+                                                <td>{{ draft.experience}}</td>
+                                                <td>{{ draft.no_of_vacancy}}</td>
+                                                <td>{{ draft.job_title }}</td>
+                                                <td><a href="{% url 'publish' pk=draft.pk %}"><input type="button" class="btn btn-success" value="Publish"></a>
+                                                    <a href="{% url 'update' pk=draft.pk %}"><input type="button" class="btn btn-primary" value="Edit"></a>
+                                                    <a href="{% url 'delete' pk=draft.pk %}"><input type="button" class="btn btn-danger" value="Delete"></a>
+                                                </td>
+                                            </tr>
+                                                {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+		</div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        <!-- <table class="table table-dark table-hover">
+            ...
+          </table> -->
+{% endblock %}

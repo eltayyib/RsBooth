@@ -1,0 +1,132 @@
+{% load static %}
+<!-- ======================= Start Navigation ===================== -->
+<nav class="navbar navbar-default navbar-mobile navbar-fixed light bootsnav">
+	<div class="container">
+
+		<!-- Start Logo Header Navigation -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+				<i class="fa fa-bars"></i>
+			</button>
+			<a class="navbar-brand" href="{% url 'home' %}">
+				<img src="{% static 'jobApp/assets/img/logo.png' %}" class="logo logo-display" alt="">
+				<img src="{% static 'jobApp/assets/img/logo.png' %}" class="logo logo-scrolled" alt="">
+			</a>
+
+		</div>
+		<!-- End Logo Header Navigation -->
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="navbar-menu">
+
+			<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+				{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+					<li style="color:green;" {% if message.tags %} class=" {{ message.tags }} " {%endif %}> {{ message}}
+					</li>
+					{{ continue }}
+					{% endfor %}
+				</ul>
+				{% endif %}
+				<li class="dropdown">
+					<a href="{% url 'home' %}" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+					<ul class="dropdown-menu animated fadeOutUp">
+						<li><a href="{% url 'home' %}">Home 1</a></li>
+					</ul>
+				</li>
+				{% if cat_menu %}
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories</a>
+					<ul class="dropdown-menu animated fadeOutUp">
+						{% for item in cat_menu %}
+						<li><a href="{% url 'category' item %}">{{ item }}</a></li>
+						{% endfor %}
+					</ul>
+				</li>
+				{% endif %}
+
+				{% if user.is_staff %}
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Employer</a>
+					<ul class="dropdown-menu animated fadeOutUp">
+						<li><a href="create-company.html">Create Company</a></li>
+						<li><a href="manage-resume.html">Manage Resume</a></li>
+						<li><a href="{% url 'candidate' %}">Browse candidate </a></li>
+						<li><a href="browse-employer-grid.html">Browse Employer Grid</a></li>
+						<li><a href="{% url 'create_job' %}">Create Job</a></li>
+						<li><a href="resume-detail.html">Resume Detail</a></li>
+						<li><a href="employer-detail.html">Employer Detail</a></li>
+					</ul>
+				</li>
+				{% else %}
+				{% if user.is_employee %}
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Candidate</a>
+					<ul class="dropdown-menu animated fadeOutUp">
+						<li><a href="browse-job.html">Browse Jobs</a></li>
+						<li><a href="browse-job-with-map.html">Browse Jobs With Map</a></li>
+						<li><a href="browse-grid-job-with-map.html">Browse Grid Jobs on Map</a></li>
+						<li><a href="{% url 'candidate' %}">Browse candidate </a></li>
+						<li><a href="browse-candidate-with-map.html">Search candidate With Map</a></li>
+						<li><a href="manage-job.html">Manage Jobs</a></li>
+						<li><a href="browse-category.html">Browse Categories</a></li>
+						<li><a href="create-resume.html">Create Resume</a></li>
+
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Elements</a>
+					<ul class="dropdown-menu animated fadeOutUp">
+						<li><a href="icons.html">Icons</a></li>
+						<li><a href="404.html">404</a></li>
+						<li><a href="pricing.html">Pricing</a></li>
+						<li><a href="job-detail.html">Job Detail</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="blog-detail.html">Blog Detail</a></li>
+						<li><a href="{% url 'contact' %}">Contact</a></li>
+						<li><a href="component.html">Component</a></li>
+						<li><a href="typography.html">Typography</a></li>
+					</ul>
+				</li>
+				{% endif %}
+				{% endif %}
+				{% if not user.is_employee and not user.is_staff %}
+				{% if user.is_authenticated %}
+				<h5 style="color: red;">YOU ARE NOT YET VERIFIED, CONTACT THE ADMIN </h2>
+					{% endif %}
+					{% endif %}
+			</ul>
+
+
+			<ul class="nav navbar-nav navbar-right">
+				{% if user.is_employee or user.is_employer or user.is_superuser %}
+				Welcome - {{ user.username | default:"Guest" | upper}}
+				<li class="sign-up"><a class="btn-signup red-btn" href="{% url 'logout' %}"><span
+							class="ti-briefcase"></span>Log Out</a></li>
+				{% if user.is_superuser %}
+				<li><a href="{% url 'super_list' pk=user.id %}">DASHBOARD</a></li>
+				{% endif %}
+
+				{% if user.is_employer %}
+				<li><a href="{% url 'employer_list' pk=user.id %}">DASHBOARD</a></li>
+				{% endif %}
+
+				{% if user.is_employee %}
+				<li><a href="{% url 'employee_list' pk=user.id %}">DASHBOARD</a></li>
+				{% endif %}
+				{% else %}
+				<li class="br-right"><a class="login-icon ti-user" href="{% url 'login' %}">Login</a></li>
+
+				<li class="sign-up"><a class="btn-signup red-btn" href="{% url 'signup' %}"><span
+							class="ti-briefcase"></span>Sign Up</a></li>
+
+			</ul>
+			{% endif %}
+
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+</nav>
+<!-- ======================= End Navigation ===================== -->

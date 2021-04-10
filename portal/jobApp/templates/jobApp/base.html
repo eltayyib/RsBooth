@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="robots" content="index,follow">
+
+    <title>Jobvivo - Job Portal Template</title>
+
+    <!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="{% static 'jobApp/assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+	
+    <!-- Icons -->
+    <link href="{% static 'jobApp/assets/plugins/icons/css/icons.css' %}" rel="stylesheet">
+    
+    <!-- Animate -->
+    <link href="{% static 'jobApp/assets/plugins/animate/animate.css' %}" rel="stylesheet">
+    
+    <!-- Bootsnav -->
+    <link href="{% static 'jobApp/assets/plugins/bootstrap/css/bootsnav.css' %}" rel="stylesheet">	
+    
+    <!-- Custom style -->
+    <link href="{% static 'jobApp/assets/css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'jobApp/assets/css/responsiveness.css' %}" rel="stylesheet">
+	
+	<!-- Custom Color -->
+    <link href="{% static 'jobApp/assets/css/skin/default.css' %}" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    
+	</head>
+<body class="blue-skin">
+
+{% include 'jobApp/navfolder/header.html' %}
+{% block main %}
+
+{% endblock %}
+{% include 'jobApp/navfolder/footer.html' %}
+	<!-- =================== START JAVASCRIPT ================== -->
+		<!-- Jquery js-->
+		<script src="{% static 'jobApp/assets/js/jquery.min.js' %}"></script>
+		
+		<!-- Bootstrap js-->
+		<script src="{% static 'jobApp/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+		
+		<!-- Bootsnav js-->
+		<script src="{% static 'jobApp/assets/plugins/bootstrap/js/bootsnav.js' %}"></script>
+		<script src="{% static 'jobApp/assets/js/viewportchecker.js' %}"></script>
+		
+		<!-- Slick Slider js-->
+		<script src="{% static 'jobApp/assets/plugins/slick-slider/slick.js' %}"></script>
+		
+		<!-- wysihtml5 editor js -->
+		<script src="{% static 'jobApp/assets/plugins/bootstrap/js/bootstrap-wysihtml5.js' %}"></script>
+		
+		<!-- Aos Js -->
+		<script src="{% static 'jobApp/assets/plugins/aos-master/aos.js' %}"></script>
+		
+		<!-- Nice Select -->
+		<script src="{% static 'jobApp/assets/plugins/nice-select/js/jquery.nice-select.min.js' %}"></script>
+		
+		<!-- Custom Js -->
+		<!--  <script src="{% static 'jobApp/assets/js/custom.js' %}"></script> -->
+		<script src="{% static 'jobApp/assets/js/jQuery.style.switcher.js' %}"></script> -->
+		
+		<script>
+			AOS.init();
+		</script>
+
+  </body>
+
+<!-- Mirrored from themezhub.net/jobvivo-live/jobvivo/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Feb 2021 01:45:15 GMT -->
+</html>

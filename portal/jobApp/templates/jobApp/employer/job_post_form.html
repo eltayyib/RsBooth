@@ -1,0 +1,43 @@
+{% extends 'jobApp/base_1.html' %}
+{% load static %}
+{% block main %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<!-- Mirrored from qerza.dexignzone.com/xhtml/table-datatable-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Feb 2021 11:47:14 GMT -->
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="page-titles">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Edit</a></li>
+						<li class="breadcrumb-item active"><a href="{% url 'update' pk=user.id %}">Update Job</a></li>
+					</ol>
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form | crispy }}
+                                <input type="submit" class="btn btn-primary" value="Update Job">
+                            </form>
+                        </div>
+                    </div>
+		</div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        <!-- <table class="table table-dark table-hover">
+            ...
+          </table> -->
+
+        {% endblock %}
