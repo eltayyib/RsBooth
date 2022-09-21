@@ -117,7 +117,7 @@ class JobDelete(DeleteView):
 def get_profile(request, pk):
     current_user_rec = Employer.objects.get(user_id=pk)
 
-    # u_form = EmployerUpdateForm()
+    u_form = EmployerUpdateForm()
     if request.method == "POST":
         u_form = EmployerUpdateForm(
             request.POST, request.FILES, instance=request.user.employer
@@ -130,13 +130,14 @@ def get_profile(request, pk):
             # return redirect('employer_list',pk=pk)
         else:
             u_form = EmployerUpdateForm()
-    else:
+    # else:
         # e_form = EmployerUpdateForm(instance=request.user.companyprofile)
-        u_form = EmployerUpdateForm(instance=request.user.employer)
+        # u_form = EmployerUpdateForm(instance=request.user.employer)
         # return HttpResponse(crequest.user)
     context = {"current_user_rec": current_user_rec, "u_form": u_form}
 
     return render(request, "jobApp/employer/employer_profile.html", context)
+
 
 
 # class ProfileUpdate(UpdateView):

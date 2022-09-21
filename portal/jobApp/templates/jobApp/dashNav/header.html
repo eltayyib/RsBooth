@@ -908,11 +908,8 @@
 						<li><a href="{% url 'draft_list' %}">Draft</a></li>
 						{% endif %}
 
-						{% if user.is_staff %}
-						<li><a href="{% url 'emp_detail' user.id %}">Profile</a></li>
-						{% else %}
-
-						<li><a href="{% url 'employee_profile' user.id %}">Profile</a></li>
+						{% if user.is_superuser %}
+						<li><a href="{% url 'admin_detail' user.id %}">Profile</a></li>
 						{% endif %}
 					</ul>
 				</li>
@@ -923,6 +920,9 @@
 					</a>
 					<ul aria-expanded="false">
 						<li><a href="{% url 'data_list' %}">User Table</a></li>
+						<li><a href="{% url 'candidate' %}">Employee's Table</a></li>
+						<li><a href="{% url 'employer' %}">Employer's Table</a></li>
+
 					</ul>
 				</li>
 				{% endif %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import (
@@ -18,8 +18,10 @@ from jobApp.forms import ContactForm
 
 
 def JobListView(request):
-    jobs            = CreateJob.objects.all()
-    qs              = CreateJob.objects.all().count()
+    # jobs            = CreateJob.objects.all()
+    qs              = CreateJob.objects.filter(published_date__lte=timezone.now()).order_by(
+        "-published_date"
+    ).count()
     user            = Employee.objects.all().count()
     company_name    = Employer.objects.all().count()
     cat_menu        = Category.objects.all()
@@ -41,7 +43,7 @@ def JobListView(request):
     #     jobs = paginator.page(paginator.num_pages)
 
     context = {
-        "jobs": jobs,
+        "job": job,
         "jobs_qs": qs,
         "company_name": company_name,
         "candidates": user,
@@ -49,6 +51,13 @@ def JobListView(request):
     }
 
     return render(request, "jobApp/home.html", context)
+
+
+def publish_drafts_post(request, pk):
+    job = get_object_or_404(CreateJob, pk=pk)
+    job.publish()
+    return redirect("home")
+
 
 
 class JobDetail(DetailView):

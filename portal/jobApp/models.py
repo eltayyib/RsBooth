@@ -322,7 +322,7 @@ class Employee(models.Model):
     phone_no = models.CharField(max_length=100)
     gender = models.CharField(max_length=100, choices=Gender_CHOICES, default="")
     status = models.CharField(max_length=100, choices=Status_CHOICES, default="")
-    age = models.PositiveBigIntegerField(blank="True", null="True")
+    age = models.PositiveIntegerField(blank="True", null="True")
     nationality = models.CharField(max_length=100, choices=COUNTRIES, default="")
     # EDUCATIONAL BACKGROUND
     highest_qualifications = models.CharField(max_length=100, default="")
@@ -352,11 +352,11 @@ class CreateJob(models.Model):
     )
     job_title = models.CharField(max_length=100)
     company_name = models.CharField(max_length=100)
-    qualification = models.CharField(max_length=100)
-    position = models.CharField(max_length=100)
-    salary = models.CharField(max_length=100)
-    experience = models.CharField(max_length=100)
-    no_of_vacancy = models.CharField(max_length=100, default="")
+    # qualification = models.CharField(max_length=100)
+    # position = models.CharField(max_length=100)
+    # salary = models.CharField(max_length=100)
+    # experience = models.CharField(max_length=100)
+    # no_of_vacancy = models.CharField(max_length=100, default="")
     company_logo = models.ImageField(upload_to="featured_image", blank=True)
     category = models.CharField(max_length=100, default="")
     location = models.CharField(max_length=100, default="")
@@ -404,7 +404,7 @@ class Location(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length = 128)
-    email = models.CharField(max_length = 264, unique = True)
+    email = models.CharField(max_length = 200, unique = True)
     phone_number = models.CharField(max_length = 128)
     message = models.TextField()
 

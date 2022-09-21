@@ -1,0 +1,88 @@
+{% extends 'jobApp/base_1.html' %}
+{% load static %}
+{% block main %}
+
+
+
+<!-- Mirrored from qerza.dexignzone.com/xhtml/table-datatable-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Feb 2021 11:47:14 GMT -->
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Table</a></li>
+                <li class="breadcrumb-item active"><a href="{% url 'data_list' %}">UserTable</a></li>
+            </ol>
+        </div>
+        <!-- row -->
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">User Table</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> ID</th>
+                                        <th> User Names</th>
+                                        <th> Phone Numbers</th>
+                                        <th> Emails</th>
+                                        <th> Qualifications</th>
+                                        <th> Full Details</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    {% for employee in can %}
+                                    <tr>
+                                        {% if employee.is_employee %}
+                                        <td> {{employee.employee.id}}</td>
+                                        {% endif %}
+
+                                        {% if employee.is_employee %}
+                                        <td>{{employee.username}}</td>
+                                        {% endif %}
+
+                                        {% if employee.is_employee %}
+                                        <td>{{employee.employee.phone_no}}</td>
+                                        {% endif %}
+
+                                        {% if employee.is_employee %}
+                                        <td>{{employee.email}}</td>
+                                        {% endif %}
+
+                                        {% if employee.is_employee %}
+                                        <td>{{ employee.employee.highest_qualifications }}</td>
+                                        {% endif %}
+
+                                        {% if employee.is_employee %}
+                                        <td><a href="{% url 'employee_profile' employee.id %}"
+                                                class="waves-effect waves-light btn btn-block btn-primary">Full
+                                                Detail</a></td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+<!-- <table class="table table-dark table-hover">
+            ...
+          </table> -->
+
+{% endblock %}

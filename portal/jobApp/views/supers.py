@@ -19,6 +19,12 @@ class AdminListView(TemplateView):
     context_object_name = "super"
 
 
+def AdminProfile(request,pk):
+    current_user_rec = CustomUser.objects.filter(pk=1)
+       
+
+    return render(request, "jobApp/admin/admin_profile.html", {"current_user_rec":current_user_rec})
+
 def displaydata(request):
     results = CustomUser.objects.all()
     # context_object_name = 'display'
@@ -81,10 +87,6 @@ class DraftListView(ListView):
         )
 
 
-def publish_drafts_post(request, pk):
-    job = get_object_or_404(CreateJob, pk=pk)
-    job.publish()
-    return redirect("home")
 
 
 class AddLocationView(CreateView):
@@ -97,3 +99,17 @@ class AddLocationView(CreateView):
         context = super(AddLocationView, self).get_context_data(*args, **kwargs)
         context["loc_menu"] = loc_menu
         return context
+
+
+def EmployerList(request):
+    can = CustomUser.objects.all()
+    # context_object_name = 'display'
+    # print(results)
+    return render(request, "jobApp/admin/employer_list.html", {"can": can})
+
+
+def Candidates(request):
+    can = CustomUser.objects.all()
+    # context_object_name = 'display'
+    # print(results)
+    return render(request, "jobApp/admin/employee_list.html", {"can": can})

@@ -22,7 +22,7 @@ urlpatterns = [
     path("draft_list", supers.DraftListView.as_view(), name="draft_list"),
     path("activate/<int:user_id>", supers.activate_user, name="activate_data"),
     path("deactivate/<int:user_id>", supers.deactivate_user, name="deactivate_data"),
-    path("publish/<int:pk>", supers.publish_drafts_post, name="publish"),
+    path("publish/<int:pk>", common.publish_drafts_post, name="publish"),
     path("detail/<int:pk>", common.JobDetail.as_view(), name="detail"),
     path('contact', common.contact, name='contact'),
     # create views urls
@@ -33,9 +33,11 @@ urlpatterns = [
     path("update/<int:pk>", employers.JobUpdate.as_view(), name="update"),
     path("delete/<int:pk>", employers.JobDelete.as_view(), name="delete"),
     path("emp_detail/<int:pk>", employers.get_profile, name="emp_detail"),
+    path("admin_detail/<int:pk>", supers.AdminProfile, name="admin_detail"),
     path("employee_profile/<int:pk>", employees.emp_profile, name="employee_profile"),
     path("apply_for_job/<int:pk>", employees.apply_job, name="apply_for_job"),
-    path("candidate", employees.Candidates, name="candidate"),
+    path("candidate", supers.Candidates, name="candidate"),
+    path("employer", supers.EmployerList, name="employer"),
     path("search/", common.SearchView.as_view(), name="search"),
 ]
 

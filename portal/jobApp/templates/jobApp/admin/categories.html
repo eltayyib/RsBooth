@@ -361,8 +361,12 @@
 								</div>
 								<div class="col-md-3 col-sm-4">
 									<div class="vrt-job-act">
+										{% if user.is_authenticated %}
 										<a href="#" data-toggle="modal" data-target="#apply-job"
 											class="btn-job theme-btn job-apply">Apply Now</a>
+										{% else %}
+										<a href="{% url 'signup' %}" class="btn-job theme-btn job-apply">sign up</a>
+										{% endif %}
 										<a href="{% url 'detail' post.id %}" title=""
 											class="btn-job light-gray-btn">View Job</a>
 									</div>

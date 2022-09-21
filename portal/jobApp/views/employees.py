@@ -50,10 +50,12 @@ def emp_profile(request, pk):
             # print('im valid')
             messages.success(request, f"Your account has been updated succesfully!")
             return redirect("home")
-    else:
-        u_form = EmployeeUpdateForm(
-            request.POST, request.FILES, instance=request.user.employee
-        )
+        else:
+            u_form = EmployeeUpdateForm(
+            
+            )
+    # else:
+    #     u_form = EmployeeUpdateForm(instance=request.user.employee)
 
     context = {"current_rec": current_rec, "u_form": u_form}
     return render(request, "jobApp/employee/employee_profile.html", context)
@@ -102,11 +104,7 @@ def  Applied_Jobs_by_Jobseeker(request):
 #     context_object_name = "can"
 
 
-def Candidates(request):
-    can = Employee.objects.all()
-    # context_object_name = 'display'
-    # print(results)
-    return render(request, "jobApp/employee/browse_candidate.html", {"can": can})
+
 
 
 # def candidates(request,pk):
