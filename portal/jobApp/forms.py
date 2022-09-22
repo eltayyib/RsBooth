@@ -218,17 +218,12 @@ class JobCreationForm(forms.ModelForm):
         model = CreateJob
         exclude = ["published_date", "created_date"]
 
-        j_choices = [
-            ("full time", "FULL TIME"),
-            ("part time", "PART TIME"),
-            ("freelancer", "FREELANCER"),
+        p_choices = [
+            ("apartment", "APARTMENT"),
+            ("land", "LAND"),
+            ("let", "LET"),
         ]
 
-        s_choices = [
-            ("$30,000", "$30,000"),
-            ("$60,000", "$60,000"),
-            ("$100,000", "$100,000"),
-        ]
 
         E_CHOICES = [
             ("0 to 6 months", "0 to 6 months"),
@@ -245,12 +240,9 @@ class JobCreationForm(forms.ModelForm):
                     "type": "hidden",
                 }
             ),
-            "salary": forms.Select(choices=s_choices, attrs={"class": "form-control"}),
-            "experience": forms.Select(
-                choices=E_CHOICES, attrs={"class": "form-control"}
-            ),
-            "job_type": forms.Select(
-                choices=j_choices, attrs={"class": "form-control"}
+            "price": forms.Select (attrs={"class": "form-control"}),
+            "post_type": forms.Select(
+                choices=p_choices, attrs={"class": "form-control"}
             ),
             "category": forms.Select(
                 choices=choice_list, attrs={"class": "form-control"}
