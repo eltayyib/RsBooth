@@ -3,8 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.db import transaction
 from .models import *
 
-# from ckeditor.widgets import CKEditorWidget
-#  (CustomUser, Employer, Employee,CreateJob)
+
 
 choices = Category.objects.all().values_list("name", "name")
 
@@ -12,7 +11,6 @@ choice_list = []
 
 for item in choices:
     choice_list.append(item)
-    # print(choice_list)
 
 choices = Location.objects.all().values_list('job_by_location', 'job_by_location') 
 choice_location = []
@@ -76,140 +74,6 @@ class EmployerUpdateForm(UserChangeForm):
         fields = ["goal", "vision", "about_us", "logo"]
 
 
-class EmployeeUpdateForm(UserChangeForm):
-    gender = forms.Select()
-    status = forms.Select()
-    nationality = forms.Select()
-    # EDUCATIONAL BACKGROUND
-    highest_qualifications = forms.CharField(required=True)
-    institute_Names = forms.CharField(required=True)
-    graduted_years = forms.CharField(required=True)
-    grades = forms.CharField(required=True)
-    # WORK EXPERIENCE
-    job_title = forms.CharField(required=True)
-    compnay_name = forms.CharField(required=True)
-    monthly_salary = forms.CharField(required=True)
-    work_type = forms.Select()
-    country = forms.Select()
-    start_date = forms.CharField(required=True)
-    end_date = forms.CharField(required=True)
-    job_responsibility = forms.Textarea()
-    career_objective = forms.Textarea()
-    cv = forms.FileField()
-    picture = forms.ImageField()
-
-    class Meta:
-        model = Employee
-        exclude = [
-            "user",
-            "username",
-            "firstname",
-            "lastname",
-            "email",
-            "age",
-            "phone_no",
-            "address",
-        ]
-
-        widgets = {
-            "gender": forms.Select(choices=choices, attrs={"class": "form-control"}),
-            "status": forms.Select(choices=choices, attrs={"class": "form-control"}),
-            "work_type": forms.Select(choices=choices, attrs={"class": "form-control"}),
-            "nationality": forms.Select(
-                choices=choices, attrs={"class": "form-control"}
-            ),
-            "highest_qualifications": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "highest_qualifications"}
-            ),
-            "institute_Names": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "institute_Names"}
-            ),
-            "graduted_years": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "graduted_years"}
-            ),
-            "grades": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "grades"}
-            ),
-            "job_title": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "job_title"}
-            ),
-            "compnay_name": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "compnay_name"}
-            ),
-            "start_date": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "month/year"}
-            ),
-            "end_date": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "month/year"}
-            ),
-            "job_responsibility": forms.Textarea(
-                attrs={"class": "form-control", "placeholder": "job_responsibility"}
-            ),
-            "career_objective": forms.Textarea(
-                attrs={"class": "form-control", "placeholder": "career_objective"}
-            ),
-        }
-
-
-
-
-
-class EmployeeRegistrationForm(UserCreationForm):
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    phone_no = forms.CharField(required=True)
-    age = forms.CharField(required=True)
-    address = forms.CharField(required=True)
-
-    class Meta(UserCreationForm.Meta):
-        model = CustomUser
-
-        fields = [
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-            "phone_no",
-            "age",
-            "address",
-            "password1",
-            "password2",
-        ]
-
-        widgets = {
-            "first_name": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "First Name"}
-            ),
-            "last_name": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Last Name"}
-            ),
-            "email": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Email"}
-            ),
-            "age": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Age"}
-            ),
-            "address": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Address"}
-            ),
-        }
-
-    @transaction.atomic
-    def save(self, commit=False):
-        user = super().save(commit=False)
-        user.is_employee = False
-        user.is_employee = True
-        user.first_name = self.cleaned_data.get("first_name")
-        user.last_name = self.cleaned_data.get("last_name")
-        user.email = self.cleaned_data.get("email")
-        user.save()
-        employee = Employee.objects.create(user=user)
-        employee.phone_no = self.cleaned_data.get("phone_no")
-        employee.age = self.cleaned_data.get("age")
-        employee.address = self.cleaned_data.get("address")
-        employee.save()
-        return user
 
 
 class JobCreationForm(forms.ModelForm):
@@ -240,7 +104,7 @@ class JobCreationForm(forms.ModelForm):
                     "type": "hidden",
                 }
             ),
-            "price": forms.Select (attrs={"class": "form-control"}),
+            # "price": forms.Textarea (attrs={"class": "form-control", "placeholder": "Price"}),
             "post_type": forms.Select(
                 choices=p_choices, attrs={"class": "form-control"}
             ),

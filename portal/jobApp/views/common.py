@@ -2,27 +2,22 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import (
-    TemplateView,
     ListView,
-    CreateView,
     DetailView,
-    UpdateView,
-    DeleteView,
+   
 )
-from jobApp.models import CustomUser, Employer, Employee, CreateJob, Category,Location, Application, Contact
+from jobApp.models import  Employer, CreateJob, Category,Location, Application, Contact
 from django.contrib import messages  # import messages
 from django.utils import timezone
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
+
 from jobApp.forms import ContactForm
 
 
 def JobListView(request):
-    # jobs            = CreateJob.objects.all()
     qs              = CreateJob.objects.filter(published_date__lte=timezone.now()).order_by(
         "-published_date"
     ).count()
-    user            = Employee.objects.all().count()
+
     company_name    = Employer.objects.all().count()
     cat_menu        = Category.objects.all()
     appliedjob_count= Application.objects.count()
@@ -33,20 +28,11 @@ def JobListView(request):
         "-published_date"
     )
 
-    # paginator = Paginator(qs, 5)  # Show 5 jobs per page
-    # page = request.GET.get("page")
-    # try:
-    #     jobs = paginator.page(page)
-    # except PageNotAnInteger:
-    #     jobs = paginator.page(1)
-    # except EmptyPage:
-    #     jobs = paginator.page(paginator.num_pages)
-
     context = {
         "job": job,
         "jobs_qs": qs,
         "company_name": company_name,
-        "candidates": user,
+        # "candidates": user,
         "cat_menu": cat_menu,
     }
 
@@ -88,9 +74,6 @@ def login_request(request):
                 if user.is_superuser:
                     login(request, user)
                     return redirect("super_list", pk=user.id)
-                if user.is_employee:
-                    login(request, user)
-                    return redirect("employee_list", pk=user.id)
                 if user.is_employer:
                     login(request, user)
                     return redirect("employer_list", pk=user.id)

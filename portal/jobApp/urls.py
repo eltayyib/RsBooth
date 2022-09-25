@@ -1,17 +1,9 @@
 from django.urls import path
-from . import views
-from jobApp.views import common, employees, employers, supers
+from jobApp.views import common, employers, supers
 
 urlpatterns = [
-    # registration urls
-    path("employee_reg", employees.EmployeeSignupView.as_view(), name="employee_reg"),
+    
     path("employer_reg", employers.EmployerSignupView.as_view(), name="employer_reg"),
-    # list views urls
-    path(
-        "employee_list/<int:pk>",
-        employees.EmployeeListView.as_view(),
-        name="employee_list",
-    ),
     path(
         "employer_list/<int:pk>",
         employers.EmployerListView.as_view(),
@@ -34,8 +26,6 @@ urlpatterns = [
     path("delete/<int:pk>", employers.JobDelete.as_view(), name="delete"),
     path("emp_detail/<int:pk>", employers.get_profile, name="emp_detail"),
     path("admin_detail/<int:pk>", supers.AdminProfile, name="admin_detail"),
-    path("employee_profile/<int:pk>", employees.emp_profile, name="employee_profile"),
-    path("apply_for_job/<int:pk>", employees.apply_job, name="apply_for_job"),
     path("candidate", supers.Candidates, name="candidate"),
     path("employer", supers.EmployerList, name="employer"),
     path("search/", common.SearchView.as_view(), name="search"),

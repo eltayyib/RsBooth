@@ -1,16 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import (
     TemplateView,
     ListView,
     CreateView,
-    DetailView,
-    UpdateView,
-    DeleteView,
+    
 )
-from jobApp.models import CustomUser, Employer, Employee, Category, CreateJob, Location
-from django.contrib import messages
+from jobApp.models import CustomUser, Category, CreateJob, Location
+
 
 
 class AdminListView(TemplateView):
