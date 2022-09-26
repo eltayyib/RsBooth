@@ -244,9 +244,9 @@ class JobCreationForm(forms.ModelForm):
             "post_type": forms.Select(
                 choices=p_choices, attrs={"class": "form-control"}
             ),
-            "category": forms.Select(
-                choices=choice_list, attrs={"class": "form-control"}
-            ),
+            # "category": forms.Select(
+            #     choices=choice_list, attrs={"class": "form-control"}
+            # ),
              "location": forms.Select(
                 choices=choice_location, attrs={"class": "form-control"}
             ),
